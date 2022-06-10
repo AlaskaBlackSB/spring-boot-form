@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    <h3>Rellena el formulario</h3>
+
+    <form th:action="@{/form}" method="post">
+
+        <div>
+            <label for="username">Username:</label>
+            <div th:if="${errors != null && errors.containsKey('username')}" th:text="${errors.username}"></div>
+            <div>
+                <input type="text" name="username" id="username" th:value="${user.username}">
+            </div>
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <div th:if="${errors != null && errors.containsKey('password')}" th:text="${errors.password}"></div>
+            <div>
+                <input type="password" name="password" id="password">
+            </div>
+        </div>
+
+        <div>
+            <label for="email">Email:</label>
+            <div th:if="${errors != null && errors.containsKey('email')}" th:text="${errors.email}"></div>
+            <div>
+                <input type="text" name="email" id="email" th:value="${user.email}">
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <input type="submit" value="Enviar">
+            </div>
+        </div>
+
+
+
+    </form>
+</body>
+</html>
