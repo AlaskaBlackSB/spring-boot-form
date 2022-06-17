@@ -4,15 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
     <title>Formulario</title>
 </head>
 <body>
     
     <h3>Resultado</h3>
 
+    <p>id: <span th:text="${user.id}"></span></p>
+    <p>pattern: <span th:text="${user.pattern}"></span></p>
+    <p>Name: <span th:text="${user.name}"></span></p>
+    <p>Last Name: <span th:text="${user.lastName}"></span></p>
     <p>Username: <span th:text="${user.username}"></span></p>
     <p>Password: <span th:text="${user.password}"></span></p>
     <p>Email: <span th:text="${user.email}"></span></p>
+    <p>Cuenta: <span th:text="${user.cuenta}"></span></p>
+    <p>Date - dates: <span th:text="${#dates.format(user.date, 'dd/MM/yyyy')}"></span></p>
+    <p>Date - calendars: <span th:text="${#calendars.format(user.date, 'dd/MM/yyyy')}"></span></p>
+    <!-- <p>Country: <span th:text="${user.country}"></span></p> -->
+    <p>Country: <span th:text="${user.country.id}"></span></p>
+    <p>Country: <span th:text="${user.country.code}"></span></p>
+    <p>Country: <span th:text="${user.country.name}"></span></p>
+    <p>Enable: <span th:text="${user.enabled}"></span></p>
+    <p>Gender: <span th:text="${user.gender}"></span></p>
+    <p>Gender: <span th:text="${user.secretValue}"></span></p>
+    <p th:each="role: ${user.roles}">Role: <span th:text="${role.id} + ' - ' + ${role.role} + ' => ' + ${role.name}"></span></p>
+    
+
+    
 
 </body>
 </html>
