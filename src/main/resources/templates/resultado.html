@@ -11,11 +11,26 @@
     <h3>Resultado</h3>
 
     <p>id: <span th:text="${user.id}"></span></p>
+    <p>pattern: <span th:text="${user.pattern}"></span></p>
     <p>Name: <span th:text="${user.name}"></span></p>
     <p>Last Name: <span th:text="${user.lastName}"></span></p>
     <p>Username: <span th:text="${user.username}"></span></p>
     <p>Password: <span th:text="${user.password}"></span></p>
     <p>Email: <span th:text="${user.email}"></span></p>
+    <p>Cuenta: <span th:text="${user.cuenta}"></span></p>
+    <p>Date - dates: <span th:text="${#dates.format(user.date, 'dd/MM/yyyy')}"></span></p>
+    <p>Date - calendars: <span th:text="${#calendars.format(user.date, 'dd/MM/yyyy')}"></span></p>
+    <!-- <p>Country: <span th:text="${user.country}"></span></p> -->
+    <p>Country: <span th:text="${user.country.id}"></span></p>
+    <p>Country: <span th:text="${user.country.code}"></span></p>
+    <p>Country: <span th:text="${user.country.name}"></span></p>
+    <p>Enable: <span th:text="${user.enabled}"></span></p>
+    <p>Gender: <span th:text="${user.gender}"></span></p>
+    <p>Gender: <span th:text="${user.secretValue}"></span></p>
+    <p th:each="role: ${user.roles}">Role: <span th:text="${role.id} + ' - ' + ${role.role} + ' => ' + ${role.name}"></span></p>
+    
+
+    
 
 </body>
 </html>

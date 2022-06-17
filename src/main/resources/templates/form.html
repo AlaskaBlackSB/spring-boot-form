@@ -12,6 +12,27 @@
     <form th:action="@{/form}" method="post" th:object="${user}">
 
         <div>
+            <label for="pattern">Pattern:</label>
+            <div th:if="${#fields.hasErrors('pattern')}" th:errors="*{pattern}"></div>
+            <div>
+                <input type="text" id="pattern" th:field="*{pattern}">
+            </div>
+        </div>
+        <div>
+            <label for="enabled">Enabled:</label>
+            <div>
+                <input type="checkbox" id="enabled" th:field="*{enabled}">
+            </div>
+        </div>
+        <div>
+            <label for="">Género:</label>
+            <div th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
+            <div th:each="gender: ${genders}">
+                <input type="radio" th:field="*{gender}" th:value="${gender}">
+                <label th:for="${#ids.prev('gender')}" th:text="${gender}"></label>
+            </div>
+        </div>
+        <div>
             <label for="name">Name:</label>
             <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
             <div>
@@ -49,6 +70,68 @@
             <div>
                 <input type="text" id="email" th:field="*{email}">
             </div>
+        </div>
+
+        <div>
+            <label for="cuenta">Cuenta:</label>
+            <div th:if="${#fields.hasErrors('cuenta')}" th:errors="*{cuenta}"></div>
+            <div>
+                <input type="text" id="cuenta" th:field="*{cuenta}">
+            </div>
+        </div>
+
+        <div>
+            <label for="date">Date:</label>
+            <div th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
+            <div>
+                <input type="date" id="date" th:field="*{date}" placeholder="yyyy/MM/dd">
+            </div>
+        </div>
+
+        <div>
+            <label for="country">Country:</label>
+            <div th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></div>
+            <div>
+                <select id="country" th:field="*{country}">
+                    <option value="">Seleccionar pais...</option>
+
+                    <!-- Muestra la lista de paises quen viene desde un arraylist -->
+                    <!-- <option th:each="country: ${countries}" th:text="${country}" th:value="${country}"></option> -->
+                    
+                    <!-- Muestra la lista de paises quen viene desde un Map -->
+                    <!-- <option th:each="country: ${countriesMap.entrySet()}" th:text="${country.value}" th:value="${country.key}"></option> -->
+                    
+                    <!-- Muestra la lista de paises quen viene desde un array de modelo Country -->
+                    <option th:each="country: ${countriesList}" th:text="${country.code + ' - ' + country.name}" th:value="${country.id}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <label>Roles:</label>
+            <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
+
+            <!-- Muestra los roles desde una lista -->
+            <!-- <div th:each="role: ${rolesList}">
+                <input type="checkbox" th:field="*{roles}" th:value="${role}">
+                <label th:text="${role}" th:for="${#ids.prev('roles')}"></label>
+            </div> -->
+
+            <!-- Muestra los roles desde un Map -->
+            <!-- <div th:each="role: ${rolesMap.entrySet()}">
+                <input type="checkbox" th:field="*{roles}" th:value="${role.key}">
+                <label th:text="${role.value}" th:for="${#ids.prev('roles')}"></label>
+            </div> -->
+
+            <!-- Muestra los roles desde una lista de Modelos Role -->
+            <div th:each="role: ${rolesListModel}">
+                <input type="checkbox" th:field="*{roles}" th:value="${role.id}" th:checked="${#lists.contains(user.roles, role)}">
+                <label th:text="${role.name}" th:for="${#ids.prev('roles')}"></label>
+            </div>
+        </div>
+
+        <div>
+            <input type="hidden" th:field="*{secretValue}">
         </div>
 
         <div>
